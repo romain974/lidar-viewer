@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>lidar-viewer — démonstration | nuages de points LiDAR HD de l'IGN</title>
+    <meta
+      name="description"
+      content="Démonstration de lidar-viewer : téléchargez une portion de dalle LiDAR HD de l'IGN (COPC) à partir d'une adresse et affichez le nuage de points en 3D dans le navigateur."
+    />
+    <style>
+      :root {
+        --fond: #0b1220;
+        --carte: #131c2e;
+        --bord: #24314a;
+        --texte: #e2e8f0;
+        --doux: #94a3b8;
+        --accent: #38bdf8;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--fond);
+        color: var(--texte);
+        font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+        line-height: 1.6;
+      }
+      .page { max-width: 1080px; margin: 0 auto; padding: 40px 22px 80px; }
+      header h1 { font-size: 1.9rem; margin: 0 0 8px; letter-spacing: -0.02em; }
+      header p { color: var(--doux); margin: 0 0 6px; max-width: 70ch; }
+      header a { color: var(--accent); }
+      .controls {
+        display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+        margin: 26px 0 14px; padding: 14px; background: var(--carte);
+        border: 1px solid var(--bord); border-radius: 12px;
+      }
+      input[type='search'], select {
+        flex: 1 1 280px; min-width: 200px; padding: 10px 12px; font-size: 14px;
+        color: var(--texte); background: #0e1626; border: 1px solid var(--bord);
+        border-radius: 9px;
+      }
+      button {
+        padding: 10px 16px; font-size: 14px; font-weight: 600; cursor: pointer;
+        color: #06111f; background: var(--accent); border: 0; border-radius: 9px;
+      }
+      button.ghost { background: transparent; color: var(--texte); border: 1px solid var(--bord); }
+      .jetons { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+      .jetons button {
+        font-weight: 500; font-size: 13px; padding: 7px 12px;
+        background: #1b2740; color: var(--texte); border: 1px solid var(--bord);
+      }
+      .etat { margin: 12px 0 0; font-size: 13px; color: var(--doux); min-height: 20px; }
+      .etat strong { color: var(--texte); }
+      pre {
+        margin: 34px 0 0; padding: 16px 18px; overflow-x: auto; font-size: 13px;
+        background: #0e1626; border: 1px solid var(--bord); border-radius: 12px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #cbd5e1;
+      }
+      footer { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--bord); color: var(--doux); font-size: 13px; }
+      footer a { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>lidar-viewer</h1>
+        <p>
+          Affichez une portion de <strong>dalle LiDAR HD de l'IGN</strong> dans n'importe quelle page web :
+          on donne une adresse ou une emprise, la librairie télécharge les seuls blocs nécessaires
+          (format COPC, requêtes HTTP Range) et rend le nuage de points en 3D.
+        </p>
+        <p>
+          Aucune clé d'API, aucun serveur, aucune dépendance de build.
+          Données © IGN, open data.
+        </p>
+      </header>
+
+      <div class="controls">
+        <input id="adresse" type="search" placeholder="Adresse, commune ou lieu (ex. 12 rue de la Paix, Paris)" />
+        <select id="emprise" aria-label="Largeur de l'emprise">
+          <option value="80">80 m</option>
+          <option value="150" selected>150 m</option>
+          <option value="300">300 m</option>
+          <option value="600">600 m</option>
+        </select>
+        <button id="charger">Afficher</button>
+        <button id="recadrer" class="ghost">Recadrer</button>
+      </div>
+
+      <div class="jetons">
+        <button data-lon="6.1294" data-lat="45.8992">Annecy</button>
+        <button data-lon="2.3376" data-lat="48.8606">Paris</button>
+        <button data-lon="-1.6778" data-lat="48.1173">Rennes</button>
+        <button data-lon="7.2619" data-lat="47.7508">Mulhouse</button>
+        <button data-lon="-0.5792" data-lat="44.8378">Bordeaux</button>
+      </div>
+
+      <div id="vue"></div>
+
+      <p class="etat" id="etat">Choisissez un lieu, ou cliquez sur une ville.</p>
+
+      <pre><code>&lt;div id="vue"&gt;&lt;/div&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/romain974/lidar-viewer@main/dist/lidar-viewer.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  LidarViewer.create({
+    container: '#vue',
+    center: [6.1294, 45.8992],  // [longitude, latitude]
+    span: 150,                  // côté de l'emprise, en mètres
+    height: 480
+  })
+&lt;/script&gt;</code></pre>
+
+      <footer>
+        <p>
+          librairie développée pour
+          <a href="https://www.simulateur-toiture.fr/lidar-viewer">simulateur-toiture.fr</a> —
+          <a href="https://github.com/romain974/lidar-viewer">code source sur GitHub</a>.
+          Données LiDAR HD © IGN (licence Etalab 2.0).
+        </p>
+      </footer>
+    </div>
+
+    <script src="../dist/lidar-viewer.min.js"></script>
+    <script>
+      const etat = document.getElementById('etat')
+      let vue = null
+
+      function creer(centre, span) {
+        if (vue) vue.destroy()
+        etat.innerHTML = 'Recherche de la dalle LiDAR HD…'
+        vue = LidarViewer.create({
+          container: '#vue',
+          center: centre,
+          span: span,
+          height: 480,
+          onStatus: (t) => (etat.textContent = t),
+          onReady: (infos) => {
+            etat.innerHTML =
+              '<strong>' + infos.points.toLocaleString('fr-FR') + '</strong> points affichés · dalle ' +
+              (infos.dalle || '—') + ' · repère EPSG:' + infos.epsg
+          },
+          onError: (e) => (etat.textContent = 'Erreur : ' + e.message),
+        })
+      }
+
+      document.getElementById('recadrer').addEventListener('click', () => vue && vue.recadrer())
+
+      document.querySelectorAll('.jetons button').forEach((b) => {
+        b.addEventListener('click', () => creer([+b.dataset.lon, +b.dataset.lat], +document.getElementById('emprise').value))
+      })
+
+      async function parAdresse() {
+        const q = document.getElementById('adresse').value.trim()
+        if (!q) return
+        etat.textContent = 'Recherche de l\'adresse…'
+        try {
+          const r = await fetch('https://api-adresse.data.gouv.fr/search/?limit=1&q=' + encodeURIComponent(q))
+          const d = await r.json()
+          if (!d.features || !d.features.length) throw new Error('adresse introuvable')
+          const [lon, lat] = d.features[0].geometry.coordinates
+          document.getElementById('adresse').value = d.features[0].properties.label
+          creer([lon, lat], +document.getElementById('emprise').value)
+        } catch (e) {
+          etat.textContent = 'Adresse introuvable — réessayez avec une commune.'
+        }
+      }
+
+      document.getElementById('charger').addEventListener('click', parAdresse)
+      document.getElementById('adresse').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') parAdresse()
+      })
+
+      creer([6.1294, 45.8992], 150)
+    </script>
+  </body>
+</html>

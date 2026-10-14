@@ -1,0 +1,60 @@
+{
+  "name": "lidar-viewer",
+  "version": "1.0.0",
+  "description": "Visionneuse de nuages de points LiDAR HD (IGN, open data) : télécharge une portion de dalle au format COPC à partir d'une emprise géographique et l'affiche en 3D, sans clé d'API.",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "browser": "dist/lidar-viewer.min.js",
+  "unpkg": "dist/lidar-viewer.min.js",
+  "jsdelivr": "dist/lidar-viewer.min.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "default": "./src/index.js"
+    },
+    "./dist/*": "./dist/*"
+  },
+  "files": [
+    "src",
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "demo": "node demo/serve.mjs",
+    "prepublishOnly": "node build.mjs"
+  },
+  "keywords": [
+    "lidar",
+    "lidar-hd",
+    "ign",
+    "copc",
+    "point-cloud",
+    "nuage-de-points",
+    "webgl",
+    "open-data",
+    "toiture",
+    "france"
+  ],
+  "author": "simulateur-toiture.fr",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://www.simulateur-toiture.fr/lidar-viewer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romain974/lidar-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/romain974/lidar-viewer/issues"
+  },
+  "dependencies": {
+    "copc": "^0.0.9",
+    "laz-perf": "^0.0.7",
+    "proj4": "^2.22.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
