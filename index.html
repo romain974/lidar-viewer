@@ -58,6 +58,16 @@
       }
       footer { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--bord); color: var(--doux); font-size: 13px; }
       footer a { color: var(--accent); }
+      .titre-section { margin: 46px 0 10px; font-size: 1.3rem; letter-spacing: -0.01em; }
+      .cartes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 22px 0 6px; }
+      .carte {
+        display: block; padding: 16px 18px; background: var(--carte);
+        border: 1px solid var(--bord); border-radius: 12px;
+        text-decoration: none; color: inherit; transition: border-color .2s, transform .2s;
+      }
+      .carte:hover { border-color: var(--accent); transform: translateY(-2px); }
+      .carte h3 { margin: 0 0 6px; font-size: 1rem; color: var(--texte); }
+      .carte p { margin: 0; font-size: 13px; color: var(--doux); }
     </style>
   </head>
   <body>
@@ -109,6 +119,39 @@
     height: 480
   })
 &lt;/script&gt;</code></pre>
+
+      <h2 class="titre-section">D'où vient cette librairie</h2>
+      <p>
+        <strong>lidar-viewer</strong> est la visionneuse que nous avons extraite de
+        <a href="https://www.simulateur-toiture.fr/">simulateur-toiture.fr</a>, le simulateur qui mesure
+        la surface et la pente d'une toiture à partir d'une simple adresse. Le site s'appuie exactement
+        sur les mêmes données que cette démo : les dalles LiDAR HD de l'IGN, environ 10 points par mètre
+        carré sur toute la France.
+      </p>
+      <p>
+        La séparation est volontaire : la librairie affiche le nuage de points, le simulateur en fait un
+        résultat utile. Calculer la surface développée des versants, déduire les pentes, tenir compte des
+        recouvrements et des saillies — c'est
+        <a href="https://www.simulateur-toiture.fr/">mesurer la surface d'une toiture</a>, et le calcul
+        prend une minute, gratuitement et sans engagement. Pour comprendre ce que cette technologie
+        permet réellement de lire sur un toit — un versant, un faîtage, une gouttière, une cheminée —
+        voir <a href="https://www.simulateur-toiture.fr/lidar-hd-mesurer-toiture">le LiDAR HD expliqué</a>.
+      </p>
+
+      <div class="cartes">
+        <a class="carte" href="https://www.simulateur-toiture.fr/">
+          <h3>Mesurer une toiture</h3>
+          <p>Le simulateur : adresse, tracé du toit, surface et pente — sans monter sur le toit.</p>
+        </a>
+        <a class="carte" href="https://www.simulateur-toiture.fr/lidar-viewer">
+          <h3>La librairie documentée</h3>
+          <p>Options, méthodes, licence et intégration en trois lignes.</p>
+        </a>
+        <a class="carte" href="https://www.simulateur-toiture.fr/lidar-hd-mesurer-toiture">
+          <h3>La donnée LiDAR HD</h3>
+          <p>Ce que contient une dalle de l'IGN, et à quoi elle sert vraiment.</p>
+        </a>
+      </div>
 
       <footer>
         <p>
