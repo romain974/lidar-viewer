@@ -29,7 +29,7 @@ cd lidar-viewer && npm install && npm run build && npm run demo
 ```html
 <div id="vue" style="height:420px"></div>
 
-<script src="https://cdn.jsdelivr.net/gh/romain974/lidar-viewer@main/dist/lidar-viewer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/romain974/lidar-viewer@v1.0.0/dist/lidar-viewer.min.js"></script>
 <script>
   LidarViewer.create({
     container: '#vue',
@@ -39,6 +39,11 @@ cd lidar-viewer && npm install && npm run build && npm run demo
   })
 </script>
 ```
+
+`@v1.0.0` est une **version figée** : les octets servis ne changeront jamais, ce qui permet
+d'épingler une version ou de calculer une empreinte SRI. Remplacez-la par `@main` pour suivre la
+branche — mais jsDelivr re-minifie alors le fichier à la volée (ses fichiers générés ne se prêtent
+pas au SRI).
 
 Une deuxième origine, si vous préférez ne dépendre d'aucun CDN :
 
