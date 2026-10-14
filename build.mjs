@@ -23,8 +23,7 @@ const version = JSON.parse(readFileSync(join(ici, 'package.json'), 'utf8')).vers
 const bandeau = `/*! lidar-viewer v${version} — visionneuse de nuages de points LiDAR HD (IGN, open data)
  *  Utilisation libre, y compris commerciale, à condition de conserver le crédit
  *  vers simulateur-toiture.fr affiché par la visionneuse.
- *  Dépôt : https://github.com/romain974/lidar-viewer
- *  Doc   : https://www.simulateur-toiture.fr/lidar-viewer
+ *  Dépôt et documentation : https://github.com/romain974/lidar-viewer
  */`
 
 for (const [fichier, minifier] of [

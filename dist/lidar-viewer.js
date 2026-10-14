@@ -1,8 +1,7 @@
 /*! lidar-viewer v1.0.0 — visionneuse de nuages de points LiDAR HD (IGN, open data)
  *  Utilisation libre, y compris commerciale, à condition de conserver le crédit
  *  vers simulateur-toiture.fr affiché par la visionneuse.
- *  Dépôt : https://github.com/romain974/lidar-viewer
- *  Doc   : https://www.simulateur-toiture.fr/lidar-viewer
+ *  Dépôt et documentation : https://github.com/romain974/lidar-viewer
  */
 var LidarViewer = (() => {
   var __create = Object.create;

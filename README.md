@@ -14,7 +14,6 @@ nuage de points en 3D. Pas de clé d'API, pas de serveur, pas de bundler, pas de
 ## Démonstration
 
 - Exemple en ligne (GitHub Pages) : <https://romain974.github.io/lidar-viewer/>
-- Documentation en français : <https://www.simulateur-toiture.fr/lidar-viewer>
 - Démo locale, sans rien installer d'autre :
 
 ```bash
@@ -41,14 +40,15 @@ cd lidar-viewer && npm install && npm run build && npm run demo
 </script>
 ```
 
-La même version est servie depuis le site, si vous préférez une origine unique :
+Une deuxième origine, si vous préférez ne dépendre d'aucun CDN :
 
 ```
-https://www.simulateur-toiture.fr/lidar-viewer/lidar-viewer.min.js
+https://romain974.github.io/lidar-viewer/dist/lidar-viewer.min.js
 ```
 
 Le fichier `laz-perf.wasm` doit se trouver **à côté** du script (il est chargé automatiquement
-depuis le dossier du script). Sur jsDelivr comme sur notre site, c'est le cas.
+depuis le dossier du script) : c'est le cas sur jsDelivr comme sur l'exemple GitHub Pages.
+Si vous préférez servir la librairie vous-même, copiez `dist/` entier.
 
 ### En npm
 
@@ -170,7 +170,5 @@ Le code source tient en quatre fichiers :
 
 ## Liens
 
-- Documentation en français : <https://www.simulateur-toiture.fr/lidar-viewer>
-- Le simulateur de mesure de toiture : <https://www.simulateur-toiture.fr>
-- Le LiDAR HD expliqué : <https://www.simulateur-toiture.fr/lidar-hd-mesurer-toiture>
-- Programme LiDAR HD de l'IGN : <https://geoservices.ign.fr/lidarhd>
+- Programme LiDAR HD de l'IGN, source des données : <https://geoservices.ign.fr/lidarhd>
+- Formule d'attribution attendue par la licence (mentions de crédit) : voir `NOTICE`
