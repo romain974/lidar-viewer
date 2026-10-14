@@ -13,13 +13,14 @@ nuage de points en 3D. Pas de clé d'API, pas de serveur, pas de bundler, pas de
 
 ## Démonstration
 
-- Démo en ligne : <https://www.simulateur-toiture.fr/lidar-viewer>
+- Exemple en ligne (GitHub Pages) : <https://romain974.github.io/lidar-viewer/>
+- Documentation en français : <https://www.simulateur-toiture.fr/lidar-viewer>
 - Démo locale, sans rien installer d'autre :
 
 ```bash
 git clone https://github.com/romain974/lidar-viewer.git
 cd lidar-viewer && npm install && npm run build && npm run demo
-# → http://localhost:5180
+# → http://localhost:5180  (même page que celle publiée sur GitHub Pages)
 ```
 
 ## Installation

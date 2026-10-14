@@ -3,8 +3,8 @@
  *
  *   node demo/serve.mjs        → http://localhost:5180
  *
- * Le dossier demo/ est aussi publiable tel quel (GitHub Pages, hébergement
- * statique) : il lui suffit d'avoir dist/ à côté.
+ * Sert la racine du dépôt : l'exemple index.html s'affiche donc exactement
+ * comme sur GitHub Pages (https://romain974.github.io/lidar-viewer/).
  */
 import { createServer } from 'node:http'
 import { readFile, stat } from 'node:fs/promises'
@@ -27,7 +27,7 @@ const TYPES = {
 createServer(async (req, res) => {
   try {
     let chemin = decodeURIComponent(new URL(req.url, 'http://x').pathname)
-    if (chemin === '/' ) chemin = '/demo/index.html'
+    if (chemin === '/') chemin = '/index.html'
     const fichier = join(racine, normalize(chemin).replace(/^([/\\])+/, ''))
     const s = await stat(fichier)
     if (s.isDirectory()) throw new Error('dossier')
